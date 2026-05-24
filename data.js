@@ -11,7 +11,8 @@ export async function fetchSalesData() {
     .filter(r => r.trim() !== "")
     .map(row => {
 
-      const cols = row.split(",");
+      // Hantera citattecken och ev. kommatecken i text
+      const cols = row.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g)?.map(c => c.replace(/^"|"$/g, "")) || [];
 
       const toalett = parseInt(cols[5]) || 0;
       const hushall = parseInt(cols[6]) || 0;
