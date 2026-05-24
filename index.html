@@ -19,6 +19,13 @@
   </div>
 </section>
 
+<section class="filters">
+  <label for="teamFilter">Filtrera lag:</label>
+  <select id="teamFilter">
+    <option value="Alla">Alla</option>
+  </select>
+</section>
+
 <section>
   <h2>Topplista</h2>
   <div id="toplist" class="grid"></div>
@@ -32,9 +39,33 @@
 <script type="module">
 import { fetchSalesData } from './data.js';
 
+let rawData = [];
+
 async function init() {
-  const data = await fetchSalesData();
-  render(data);
+  rawData = await fetchSalesData();
+  populateFilter(rawData);
+  render(rawData);
+}
+
+function populateFilter(data) {
+  const teams = [...new Set(data.map(r => r.lag))].sort();
+  const select = document.getElementById("teamFilter");
+
+  teams.forEach(team => {
+    const option = document.createElement("option");
+    option.value = team;
+    option.textContent = team;
+    select.appendChild(option);
+  });
+
+  select.addEventListener("change", () => {
+    const selected = select.value;
+    const filtered = selected === "Alla"
+      ? rawData
+      : rawData.filter(r => r.lag === selected);
+
+    render(filtered);
+  });
 }
 
 function render(data) {
