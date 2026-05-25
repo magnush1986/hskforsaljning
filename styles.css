@@ -258,3 +258,32 @@ header p {
   color: #64748b;
   font-size: 14px;
 }
+
+.club-progress-section {
+  margin-bottom: 40px;
+}
+
+.club-progress-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow);
+}
+
+.club-progress-card h2 {
+  margin-top: 0;
+  margin-bottom: 24px;
+  font-size: 28px;
+}
+
+.club-progress-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.progress-bar.large {
+  height: 20px;
+}
