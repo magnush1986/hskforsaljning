@@ -1,104 +1,85 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background: #f5f5f5;
+:root {
+  transition: 0.2s ease;
+  border: 1px solid rgba(255,255,255,0.2);
 }
 
-header {
-  background: #1f7a3a;
-  color: white;
-  padding: 20px;
-  text-align: center;
+.player-card:hover {
+  transform: translateY(-4px);
 }
 
-h1, h2, h3 {
-  margin: 0 0 10px 0;
+.player-card h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
 }
 
-section {
-  padding: 20px;
+.player-card .team-name {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 12px;
 }
 
-/* 🔹 Summary */
-.summary {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+.player-card .value {
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--primary);
 }
 
-/* 🔹 Filter */
-.filters {
-  padding: 0 20px 20px 20px;
-}
-
-.filters select {
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
-
-/* 🔹 Grid (topplista) */
-.grid {
+.team-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
 }
 
-/* 🔹 Card */
-.card {
+.team-card {
   background: white;
-  padding: 15px;
-  border-radius: 12px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
-  text-align: center;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
 }
 
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+.team-card h3 {
+  margin-top: 0;
+  margin-bottom: 18px;
+  font-size: 22px;
 }
 
-.card strong {
-  font-size: 24px;
-  color: #1f7a3a;
-}
-
-/* 🔹 Teams */
-.team {
-  background: white;
-  margin-bottom: 20px;
-  padding: 15px;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-}
-
-.team h3 {
-  margin-bottom: 10px;
-  border-bottom: 2px solid #1f7a3a;
-  padding-bottom: 5px;
-}
-
-/* 🔹 Rows */
-.row {
+.team-row {
   display: flex;
   justify-content: space-between;
-  padding: 6px 0;
-  border-bottom: 1px solid #eee;
-  font-size: 14px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
 }
 
-.row:last-child {
+.team-row:last-child {
   border-bottom: none;
 }
 
-/* 🔹 Mobile */
-@media (max-width: 600px) {
-  .summary {
-    flex-direction: column;
+.team-row .name {
+  color: var(--text);
+}
+
+.team-row .total {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+@media (max-width: 768px) {
+
+  header h1 {
+    font-size: 28px;
   }
 
-  .grid {
-    grid-template-columns: 1fr 1fr;
+  .summary-card p {
+    font-size: 32px;
   }
+
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
 }
