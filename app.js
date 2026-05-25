@@ -10,6 +10,11 @@ let clubConfig = {};
 
 let teamConfig = [];
 
+const urlParams = new URLSearchParams(window.location.search);
+
+const preselectedTeam =
+  urlParams.get("team");
+
 async function init() {
 
   rawData = await fetchSalesData();
@@ -20,7 +25,22 @@ async function init() {
 
   populateFilter(rawData);
 
-  render(rawData);
+  if (preselectedTeam) {
+
+  document.getElementById("teamFilter").value =
+    preselectedTeam;
+
+  rawData = rawData.filter(
+    r => r.lag === preselectedTeam
+  );
+
+}
+  
+  render(
+  preselectedTeam
+    ? rawData.filter(r => r.lag === preselectedTeam)
+    : rawData
+);
 
 }
 
