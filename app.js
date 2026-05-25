@@ -294,7 +294,7 @@ function renderDetails(data) {
     }
 
     teams[r.lag].total += r.total;
-
+  
     if (!teams[r.lag].players[r.spelare]) {
 
       teams[r.lag].players[r.spelare] = 0;
@@ -305,40 +305,91 @@ function renderDetails(data) {
 
   });
 
+    const selectedTeam =
+    document.getElementById("teamFilter")?.value || "Alla";
+
+  const showPlayers =
+    selectedTeam !== "Alla"
+    ||
+    !!preselectedTeam;
+
+  document.getElementById("toplistTitle").innerText =
+    showPlayers
+      ? "Toppsäljare"
+      : "Topplag";
+
   // ========================================
   // TOPPLISTA
   // ========================================
 
-  const sortedPlayers =
-    Object.entries(players)
-      .sort((a,b) => b[1].total - a[1].total);
+    if (showPlayers) {
 
-  document.getElementById("toplist").innerHTML =
-    sortedPlayers
-      .slice(0,10)
-      .map(([name, obj], index) => `
+    const sortedPlayers =
+      Object.entries(players)
+        .sort((a,b) => b[1].total - a[1].total);
 
-        <div class="player-card">
+    document.getElementById("toplist").innerHTML =
+      sortedPlayers
+        .slice(0,10)
+        .map(([name, obj], index) => `
 
-          <div class="rank">
-            #${index + 1}
+          <div class="player-card">
+
+            <div class="rank">
+              #${index + 1}
+            </div>
+
+            <h3>
+              ${name}
+            </h3>
+
+            <div class="team-name">
+              ${obj.lag}
+            </div>
+
+            <div class="value">
+              ${obj.total}
+            </div>
+
           </div>
 
-          <h3>
-            ${name}
-          </h3>
+        `).join("");
 
-          <div class="team-name">
-            ${obj.lag}
+  }
+  else {
+
+    const sortedTeams =
+      Object.entries(teams)
+        .sort((a,b) => b[1].total - a[1].total);
+
+    document.getElementById("toplist").innerHTML =
+      sortedTeams
+        .slice(0,10)
+        .map(([team, obj], index) => `
+
+          <div class="player-card">
+
+            <div class="rank">
+              #${index + 1}
+            </div>
+
+            <h3>
+              ${team}
+            </h3>
+
+            <div class="team-name">
+              Lag
+            </div>
+
+            <div class="value">
+              ${obj.total}
+            </div>
+
           </div>
 
-          <div class="value">
-            ${obj.total}
-          </div>
+        `).join("");
 
-        </div>
-
-      `).join("");
+  }
 
   // ========================================
   // LAG
