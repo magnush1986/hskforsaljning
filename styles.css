@@ -287,3 +287,58 @@ header p {
 .progress-bar.large {
   height: 20px;
 }
+
+.team-toggle {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.team-toggle-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.team-toggle-header h3 {
+  margin: 0;
+}
+
+.toggle-icon {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1;
+}
+
+.team-content {
+  display: none;
+  margin-top: 20px;
+  animation: fadeDown 0.2s ease;
+}
+
+.team-content.open {
+  display: block;
+}
+
+.team-toggle:hover .toggle-icon {
+  transform: scale(1.1);
+}
+
+@keyframes fadeDown {
+
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
