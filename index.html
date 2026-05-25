@@ -10,133 +10,59 @@
 
 <header>
   <h1>Försäljning toalett / hushållspapper</h1>
+  <p>Live-resultat för hela föreningen</p>
 </header>
 
-<section class="summary">
-  <div class="card">
-    <h2>Totalt sålt</h2>
-    <p id="total">0</p>
-  </div>
-</section>
+<div class="container">
 
-<section class="filters">
-  <label for="teamFilter">Filtrera lag:</label>
-  <select id="teamFilter">
-    <option value="Alla">Alla</option>
-  </select>
-</section>
+  <section class="summary-grid">
 
-<section>
-  <h2>Topplista</h2>
-  <div id="toplist" class="grid"></div>
-</section>
+    <div class="summary-card">
+      <h2>Totalt sålt</h2>
+      <p id="total">0</p>
+    </div>
 
-<section>
-  <h2>Per lag</h2>
-  <div id="teams"></div>
-</section>
+    <div class="summary-card">
+      <h2>Antal lag</h2>
+      <p id="teamCount">0</p>
+    </div>
 
-<script type="module">
-import { fetchSalesData } from './data.js';
+    <div class="summary-card">
+      <h2>Antal spelare</h2>
+      <p id="playerCount">0</p>
+    </div>
 
-let rawData = [];
+  </section>
 
-async function init() {
-  rawData = await fetchSalesData();
-  populateFilter(rawData);
-  render(rawData);
-}
+  <section class="filters">
 
-function populateFilter(data) {
-  const teams = [...new Set(data.map(r => r.lag))].sort();
-  const select = document.getElementById("teamFilter");
+    <label for="teamFilter">Filtrera lag:</label>
 
-  teams.forEach(team => {
-    const option = document.createElement("option");
-    option.value = team;
-    option.textContent = team;
-    select.appendChild(option);
-  });
+    <select id="teamFilter">
+      <option value="Alla">Alla</option>
+    </select>
 
-  select.addEventListener("change", () => {
-    const selected = select.value;
-    const filtered = selected === "Alla"
-      ? rawData
-      : rawData.filter(r => r.lag === selected);
+  </section>
 
-    render(filtered);
-  });
-}
+  <section>
 
-function render(data) {
+    <h2 class="section-title">Topplista</h2>
 
-  let total = 0;
-  const players = {};
-  const teams = {};
+    <div id="toplist" class="toplist-grid"></div>
 
-  data.forEach(r => {
-    total += r.total;
+  </section>
 
-    // spelare
-    if (!players[r.spelare]) {
-      players[r.spelare] = { lag: r.lag, total: 0 };
-    }
-    players[r.spelare].total += r.total;
+  <section>
 
-    // lag
-    if (!teams[r.lag]) {
-      teams[r.lag] = {};
-    }
+    <h2 class="section-title">Per lag</h2>
 
-    if (!teams[r.lag][r.spelare]) {
-      teams[r.lag][r.spelare] = 0;
-    }
+    <div id="teams" class="team-grid"></div>
 
-    teams[r.lag][r.spelare] += r.total;
-  });
+  </section>
 
-  // total
-  document.getElementById("total").innerText = total;
+</div>
 
-  // toplista
-  const sortedPlayers = Object.entries(players)
-    .sort((a,b) => b[1].total - a[1].total);
-
-  document.getElementById("toplist").innerHTML = sortedPlayers
-    .slice(0,10)
-    .map(([name, obj]) => `
-      <div class="card">
-        <h3>${name}</h3>
-        <p>${obj.lag}</p>
-        <strong>${obj.total}</strong>
-      </div>
-    `).join("");
-
-  // per lag
-  const teamContainer = document.getElementById("teams");
-
-  teamContainer.innerHTML = Object.entries(teams).map(([team, players]) => {
-
-    const sorted = Object.entries(players)
-      .sort((a,b) => b[1] - a[1]);
-
-    return `
-      <div class="team">
-        <h3>${team}</h3>
-        ${sorted.map(([name, total]) => `
-          <div class="row">
-            <span>${name}</span>
-            <span>${total}</span>
-          </div>
-        `).join("")}
-      </div>
-    `;
-  }).join("");
-
-}
-
-init(); 
-</script>
+<script type="module" src="app.js"></script>
 
 </body>
 </html>
