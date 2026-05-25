@@ -9,60 +9,159 @@
 <body>
 
 <header>
-  <h1>Försäljning toalett / hushållspapper</h1>
-  <p>Live-resultat för hela föreningen</p>
+
+  <h1>
+    Försäljning toalett / hushållspapper
+  </h1>
+
+  <p>
+    Live-resultat för hela föreningen
+  </p>
+
 </header>
 
 <div class="container">
 
+  <!-- ===================================== -->
+  <!-- KPI -->
+  <!-- ===================================== -->
+
   <section class="summary-grid">
 
     <div class="summary-card">
-      <h2>Totalt sålt</h2>
-      <p id="total">0</p>
+
+      <h2>
+        Totalt sålt
+      </h2>
+
+      <p id="total">
+        0
+      </p>
+
     </div>
 
     <div class="summary-card">
-      <h2>Antal lag</h2>
-      <p id="teamCount">0</p>
+
+      <h2>
+        Omsättning
+      </h2>
+
+      <p id="revenue">
+        0 kr
+      </p>
+
     </div>
 
     <div class="summary-card">
-      <h2>Antal spelare</h2>
-      <p id="playerCount">0</p>
+
+      <h2>
+        Vinst till föreningen
+      </h2>
+
+      <p id="profit">
+        0 kr
+      </p>
+
+    </div>
+
+    <div class="summary-card">
+
+      <h2>
+        Målprogress
+      </h2>
+
+      <p id="goal">
+        0 / 0
+      </p>
+
+    </div>
+
+    <div class="summary-card">
+
+      <h2>
+        Antal lag
+      </h2>
+
+      <p id="teamCount">
+        0
+      </p>
+
+    </div>
+
+    <div class="summary-card">
+
+      <h2>
+        Antal spelare
+      </h2>
+
+      <p id="playerCount">
+        0
+      </p>
+
     </div>
 
   </section>
 
+  <!-- ===================================== -->
+  <!-- FILTER -->
+  <!-- ===================================== -->
+
   <section class="filters">
 
-    <label for="teamFilter">Filtrera lag:</label>
+    <label for="teamFilter">
+      Filtrera lag:
+    </label>
 
     <select id="teamFilter">
-      <option value="Alla">Alla</option>
+
+      <option value="Alla">
+        Alla
+      </option>
+
     </select>
 
   </section>
 
+  <!-- ===================================== -->
+  <!-- TOPPLISTA -->
+  <!-- ===================================== -->
+
   <section>
 
-    <h2 class="section-title">Topplista</h2>
+    <h2 class="section-title">
+      Topplista
+    </h2>
 
-    <div id="toplist" class="toplist-grid"></div>
+    <div
+      id="toplist"
+      class="toplist-grid">
+    </div>
 
   </section>
 
+  <!-- ===================================== -->
+  <!-- LAG -->
+  <!-- ===================================== -->
+
   <section>
 
-    <h2 class="section-title">Per lag</h2>
+    <h2 class="section-title">
+      Per lag
+    </h2>
 
-    <div id="teams" class="team-grid"></div>
+    <div
+      id="teams"
+      class="team-grid">
+    </div>
 
   </section>
 
 </div>
 
-<script type="module" src="app.js"></script>
+<script
+  type="module"
+  src="app.js">
+</script>
 
 </body>
 </html>
