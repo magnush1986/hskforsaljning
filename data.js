@@ -1,4 +1,4 @@
-const salesUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTZbyYpAEx8kmIsLFHuSgWi2KoYxAW1eY_XhQNQhcynNbSJSLs2eFtWcycWOhGw-5aIGe6di2yWGo_g/pub?output=csv";
+const salesUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkpz9D6TnUaD5oG4r5DJ6iFrQabA7aH6NLYXViWi35usMTsO8ESpJzPPGzRS3RoaK7S4fLi176sWYJ/pub?gid=381728449&single=true&output=csv";
 
 const clubUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQSmzvSAwaB1GqDBcJayz35ZoPpS2SYVih9cd06xpLiNmekGjt-vnFQR574iyYHMo_ZWWNPBEM6amQd/pub?gid=1902328772&single=true&output=csv";
 
@@ -29,21 +29,24 @@ export async function fetchSalesData() {
 
       const cols = parseCsvRow(row);
 
-      const toalett = parseInt(cols[5]) || 0;
-      const hushall = parseInt(cols[6]) || 0;
+      const toalett =
+        parseInt(cols[1]) || 0;
+
+      const hushall =
+        parseInt(cols[2]) || 0;
 
       return {
 
-        timestamp: cols[0],
-        lag: cols[1],
-        spelare: cols[2],
-        namn: cols[3],
-        telefon: cols[4],
+        spelare: cols[0],
 
         toalett,
+
         hushall,
 
-        total: toalett + hushall
+        lag: cols[3],
+
+        total:
+          toalett + hushall
 
       };
 
