@@ -1,0 +1,78 @@
+function buildForm() {
+
+  const FORM_ID = '1gPY4mpzHtpkz12UPWXHG_bzYfDqUcq_y7-7WhEJh084';
+  const form = FormApp.openById(FORM_ID);
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+
+  // Rensa formuläret
+  const items = form.getItems();
+  items.forEach(item => form.deleteItem(item));
+
+  // Hämta lag (inkl Sortering)
+  const lagSheet = ss.getSheetByName('Lag');
+  const lagData = lagSheet.getRange(2,1,lagSheet.getLastRow()-1,3).getValues();
+
+  const activeTeams = lagData
+    .filter(row => row[1] == 1)
+    .sort((a, b) => (a[2] || 999) - (b[2] || 999)) // sortering ASC
+    .map(row => row[0]);
+
+  // Fråga: Lag
+  const teamQuestion = form.addListItem().setTitle('Välj lag').setRequired(true);
+
+  const choices = [];
+
+  activeTeams.forEach(team => {
+
+    const section = form.addPageBreakItem().setTitle(team);
+
+    const teamSheet = ss.getSheetByName(team);
+    const players = teamSheet
+      .getRange(2,1,teamSheet.getLastRow()-1,1)
+      .getValues()
+      .flat()
+      .filter(p => p !== '');
+
+    // Spelare
+    form.addListItem()
+      .setTitle('Spelare som säljer')
+      .setChoiceValues(players)
+      .setRequired(true);
+
+    // Beställarens namn
+    form.addTextItem()
+      .setTitle('Beställarens namn')
+      .setRequired(true);
+
+    // Telefonnummer
+    form.addTextItem()
+      .setTitle('Beställarens telefonnummer')
+      .setRequired(true);
+
+    // Toalettpapper
+    form.addTextItem()
+      .setTitle('Antal toalettpapper')
+      .setHelpText('Ange antal. Skriv 0 om beställaren inte vill ha produkten.')
+      .setValidation(
+        FormApp.createTextValidation()
+          .requireNumberGreaterThanOrEqualTo(0)
+          .build()
+      )
+      .setRequired(true);
+
+    // Hushållspapper
+    form.addTextItem()
+      .setTitle('Antal hushållspapper')
+      .setHelpText('Ange antal. Skriv 0 om beställaren inte vill ha produkten.')
+      .setValidation(
+        FormApp.createTextValidation()
+          .requireNumberGreaterThanOrEqualTo(0)
+          .build()
+      )
+      .setRequired(true);
+
+    choices.push(teamQuestion.createChoice(team, section));
+  });
+
+  teamQuestion.setChoices(choices);
+}
