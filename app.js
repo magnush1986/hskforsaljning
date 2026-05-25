@@ -16,6 +16,9 @@ const urlParams =
 const preselectedTeam =
   urlParams.get("team");
 
+const filterSection =
+  document.querySelector(".filters");
+
 async function init() {
 
   rawData =
@@ -28,6 +31,19 @@ async function init() {
     await fetchTeams();
 
   populateFilter(rawData);
+
+  // ========================================
+  // DÖLJ FILTER VID LAG-URL
+  // ========================================
+
+  if (preselectedTeam) {
+
+    filterSection.style.display = "none";
+
+    document.getElementById("teamFilter").value =
+      preselectedTeam;
+
+  }
 
   // ========================================
   // GLOBALA KPI
@@ -45,13 +61,6 @@ async function init() {
           r => r.lag === preselectedTeam
         )
       : rawData;
-
-  if (preselectedTeam) {
-
-    document.getElementById("teamFilter").value =
-      preselectedTeam;
-
-  }
 
   renderDetails(filteredData);
 
