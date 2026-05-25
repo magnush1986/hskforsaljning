@@ -172,7 +172,7 @@ function render(data) {
     total;
 
   document.getElementById("teamCount").innerText =
-    Object.keys(teams).length;
+    teamConfig.filter(t => t.aktiv === 1).length;
 
   document.getElementById("playerCount").innerText =
     Object.keys(players).length;
