@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Försäljning</title>
-  <link rel="stylesheet" href="styles.css">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+  <title>
+    Försäljning
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="styles.css">
+
 </head>
+
 <body>
 
 <header>
@@ -90,27 +102,42 @@
 
   </section>
 
+  <!-- ===================================== -->
+  <!-- FÖRENINGENS MÅLPROGRESS -->
+  <!-- ===================================== -->
+
   <section class="club-progress-section">
 
-  <div class="club-progress-card">
+    <div class="club-progress-card">
 
-    <h2>
-      Föreningens målprogress
-    </h2>
+      <h2>
+        Föreningens målprogress
+      </h2>
 
-    <div class="club-progress-label">
+      <div class="club-progress-label">
 
-      <span id="goal">
-        0 / 0
-      </span>
+        <span id="goal">
+          0 / 0
+        </span>
 
-      <span id="goalPercent">
-        0%
-      </span>
+        <span id="goalPercent">
+          0%
+        </span>
+
+      </div>
+
+      <div class="progress-bar large">
+
+        <div
+          id="clubProgressFill"
+          class="progress-fill">
+        </div>
+
+      </div>
 
     </div>
 
-    <div class="progress-bar large">
+  </section>
 
   <!-- ===================================== -->
   <!-- FILTER -->
@@ -119,13 +146,17 @@
   <section class="filters">
 
     <label for="teamFilter">
+
       Filtrera lag:
+
     </label>
 
     <select id="teamFilter">
 
       <option value="Alla">
+
         Alla
+
       </option>
 
     </select>
@@ -139,7 +170,9 @@
   <section>
 
     <h2 class="section-title">
+
       Topplista
+
     </h2>
 
     <div
@@ -150,13 +183,15 @@
   </section>
 
   <!-- ===================================== -->
-  <!-- LAG -->
+  <!-- PER LAG -->
   <!-- ===================================== -->
 
   <section>
 
     <h2 class="section-title">
+
       Per lag
+
     </h2>
 
     <div
@@ -168,15 +203,16 @@
 
 </div>
 
+<footer class="footer">
+
+  Developed by Beaver Data Solutions AB
+
+</footer>
+
 <script
   type="module"
   src="app.js">
 </script>
 
-<footer class="footer">
-
-  Developed by Beaver Data Solutions AB
-
-</footer>  
 </body>
 </html>
