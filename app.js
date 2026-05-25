@@ -164,6 +164,11 @@ function render(data) {
     .filter(t => t.aktiv === 1)
     .reduce((sum, t) => sum + t.mal, 0);
 
+  const goalPercent =
+  totalGoal > 0
+    ? Math.round((total / totalGoal) * 100)
+    : 0;
+
   // ========================================
   // KPI
   // ========================================
@@ -195,12 +200,14 @@ function render(data) {
 
   }
 
-  if (document.getElementById("goal")) {
-
-    document.getElementById("goal").innerText =
-      total + " / " + totalGoal;
-
-  }
+  document.getElementById("goal").innerText =
+    total + " / " + totalGoal;
+  
+  document.getElementById("goalPercent").innerText =
+    goalPercent + "%";
+  
+  document.getElementById("clubProgressFill").style.width =
+    Math.min(goalPercent, 100) + "%";
 
   // ========================================
   // TOPPLISTA
