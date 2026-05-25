@@ -266,57 +266,107 @@ function render(data) {
       return `
 
         <div class="team-card">
-
-          <h3>
-            ${team}
-          </h3>
-
-          <div class="team-progress">
-
-            <div class="team-progress-label">
-
-              <span>
-                ${obj.total} / ${teamGoal}
+      
+          <button
+            class="team-toggle ${preselectedTeam === team ? 'active' : ''}"
+            onclick="toggleTeam(this)">
+      
+            <div class="team-toggle-header">
+      
+              <h3>
+                ${team}
+              </h3>
+      
+              <span class="toggle-icon">
+                ${preselectedTeam === team ? '−' : '+'}
               </span>
-
-              <span>
-                ${percent}%
-              </span>
-
+      
             </div>
-
-            <div class="progress-bar">
-
-              <div
-                class="progress-fill"
-                style="width:${Math.min(percent,100)}%;">
+      
+            <div class="team-progress">
+      
+              <div class="team-progress-label">
+      
+                <span>
+                  ${obj.total} / ${teamGoal}
+                </span>
+      
+                <span>
+                  ${percent}%
+                </span>
+      
               </div>
-
+      
+              <div class="progress-bar">
+      
+                <div
+                  class="progress-fill"
+                  style="width:${Math.min(percent,100)}%;">
+                </div>
+      
+              </div>
+      
             </div>
-
+      
+          </button>
+      
+          <div class="team-content ${preselectedTeam === team ? 'open' : ''}">
+      
+            ${sortedPlayers.map(([name, total]) => `
+      
+              <div class="team-row">
+      
+                <span class="name">
+                  ${name}
+                </span>
+      
+                <span class="total">
+                  ${total}
+                </span>
+      
+              </div>
+      
+            `).join("")}
+      
           </div>
-
-          ${sortedPlayers.map(([name, total]) => `
-
-            <div class="team-row">
-
-              <span class="name">
-                ${name}
-              </span>
-
-              <span class="total">
-                ${total}
-              </span>
-
-            </div>
-
-          `).join("")}
-
+      
         </div>
-
+      
       `;
 
     }).join("");
+
+}
+
+window.toggleTeam = function(button) {
+
+  const content =
+    button.nextElementSibling;
+
+  const icon =
+    button.querySelector(".toggle-icon");
+
+  const isOpen =
+    content.classList.contains("open");
+
+  if (isOpen) {
+
+    content.classList.remove("open");
+
+    button.classList.remove("active");
+
+    icon.innerText = "+";
+
+  }
+  else {
+
+    content.classList.add("open");
+
+    button.classList.add("active");
+
+    icon.innerText = "−";
+
+  }
 
 }
 
