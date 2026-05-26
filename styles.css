@@ -1,8 +1,8 @@
 :root {
   --bg: #f3f5f7;
   --card: #ffffff;
-  --primary: #1f7a3a;
-  --primary-dark: #145127;
+  --primary: #1668c5;
+  --primary-dark: #0f4f99;
   --text: #1e293b;
   --muted: #64748b;
   --border: #e2e8f0;
@@ -66,6 +66,7 @@ header p {
   border-radius: var(--radius);
   padding: 24px;
   box-shadow: var(--shadow);
+  border-top: 4px solid #1668c5;
 }
 
 .summary-card h2 {
@@ -141,6 +142,7 @@ header p {
   padding: 5px 10px;
   border-radius: 999px;
   font-weight: 700;
+  background: #1668c5;
 }
 
 .player-card h3 {
@@ -171,6 +173,7 @@ header p {
   border-radius: var(--radius);
   padding: 20px;
   box-shadow: var(--shadow);
+  border-top: 4px solid #1668c5;
 }
 
 .team-card h3 {
@@ -370,6 +373,18 @@ header p {
   margin-bottom: 8px;
 
   font-weight: 600;
+
+}
+
+.club-logo {
+
+  width: 140px;
+
+  max-width: 40vw;
+
+  display: block;
+
+  margin: 0 auto 20px auto;
 
 }
 
