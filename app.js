@@ -312,9 +312,13 @@ function renderDetails(data) {
     document.getElementById("teamFilter")?.value || "Alla";
 
   const showPlayers =
+  !allView
+  &&
+  (
     selectedTeam !== "Alla"
     ||
-    !!preselectedTeam;
+    !!preselectedTeam
+  );
 
   document.getElementById("toplistTitle").innerText =
     showPlayers
@@ -422,78 +426,117 @@ function renderDetails(data) {
               )
             : 0;
 
-        return `
+        if (allView) {
 
-          <div class="team-card">
+  return `
 
-            <button
-              class="team-toggle ${preselectedTeam === team ? 'active' : ''}"
-              onclick="toggleTeam(this)">
+    <div class="team-card">
 
-              <div class="team-toggle-header">
+      <h3>
+        ${team}
+      </h3>
 
-                <h3>
-                  ${team}
-                </h3>
+      <div class="team-progress">
 
-                <span class="toggle-icon">
-                  ${preselectedTeam === team ? '−' : '+'}
-                </span>
+        <div class="team-progress-label">
 
-              </div>
+          <span>
+            ${obj.total} / ${teamGoal}
+          </span>
 
-              <div class="team-progress">
+          <span>
+            ${percent}%
+          </span>
 
-                <div class="team-progress-label">
+        </div>
 
-                  <span>
-                    ${obj.total} / ${teamGoal}
-                  </span>
+        <div class="progress-bar">
 
-                  <span>
-                    ${percent}%
-                  </span>
-
-                </div>
-
-                <div class="progress-bar">
-
-                  <div
-                    class="progress-fill"
-                    style="width:${Math.min(percent,100)}%;">
-                  </div>
-
-                </div>
-
-              </div>
-
-            </button>
-
-            <div class="team-content ${preselectedTeam === team ? 'open' : ''}">
-
-              ${sortedPlayers.map(([name, total]) => `
-
-                <div class="team-row">
-
-                  <span class="name">
-                    ${name}
-                  </span>
-
-                  <span class="total">
-                    ${total}
-                  </span>
-
-                </div>
-
-              `).join("")}
-
-            </div>
-
+          <div
+            class="progress-fill"
+            style="width:${Math.min(percent,100)}%;">
           </div>
 
-        `;
+        </div>
 
-      }).join("");
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+return `
+
+  <div class="team-card">
+
+    <button
+      class="team-toggle ${preselectedTeam === team ? 'active' : ''}"
+      onclick="toggleTeam(this)">
+
+      <div class="team-toggle-header">
+
+        <h3>
+          ${team}
+        </h3>
+
+        <span class="toggle-icon">
+          ${preselectedTeam === team ? '−' : '+'}
+        </span>
+
+      </div>
+
+      <div class="team-progress">
+
+        <div class="team-progress-label">
+
+          <span>
+            ${obj.total} / ${teamGoal}
+          </span>
+
+          <span>
+            ${percent}%
+          </span>
+
+        </div>
+
+        <div class="progress-bar">
+
+          <div
+            class="progress-fill"
+            style="width:${Math.min(percent,100)}%;">
+          </div>
+
+        </div>
+
+      </div>
+
+    </button>
+
+    <div class="team-content ${preselectedTeam === team ? 'open' : ''}">
+
+      ${sortedPlayers.map(([name, total]) => `
+
+        <div class="team-row">
+
+          <span class="name">
+            ${name}
+          </span>
+
+          <span class="total">
+            ${total}
+          </span>
+
+        </div>
+
+      `).join("")}
+
+    </div>
+
+  </div>
+
+`;
 
 }
 
