@@ -540,11 +540,6 @@ function renderDetails(data) {
 
 function renderProductChart(data) {
 
-  console.log(
-    "productChart:",
-    window.salesChart
-  );
-  
   let totalToalett = 0;
   let totalHushall = 0;
 
@@ -555,65 +550,78 @@ function renderProductChart(data) {
 
   });
 
-  const canvas =
-    document.getElementById("productChart");
+  const total =
+    totalToalett + totalHushall;
 
-  if (!canvas) {
+  const toalettPercent =
+    total > 0
+      ? Math.round(
+          (totalToalett / total) * 100
+        )
+      : 0;
 
-    return;
+  const hushallPercent =
+    total > 0
+      ? Math.round(
+          (totalHushall / total) * 100
+        )
+      : 0;
 
-  }
+  document.getElementById(
+    "productDistribution"
+  ).innerHTML = `
 
-  if (window.salesChart) {
+    <div class="distribution-row">
 
-    window.salesChart.destroy();
+      <div class="distribution-header">
 
-  }
+        <span>
+          🧻 Toalettpapper
+        </span>
 
-  window.salesChart =
-    new Chart(canvas, {
+        <span>
+          ${totalToalett} balar (${toalettPercent}%)
+        </span>
 
-      type: "bar",
+      </div>
 
-      data: {
+      <div class="progress-bar">
 
-        labels: [
-          "Toalettpapper",
-          "Hushållspapper"
-        ],
+        <div
+          class="progress-fill"
+          style="width:${toalettPercent}%;">
+        </div>
 
-        datasets: [{
+      </div>
 
-          label: "Antal balar",
+    </div>
 
-          data: [
-            totalToalett,
-            totalHushall
-          ]
+    <div class="distribution-row">
 
-        }]
+      <div class="distribution-header">
 
-      },
+        <span>
+          🧻 Hushållspapper
+        </span>
 
-      options: {
+        <span>
+          ${totalHushall} balar (${hushallPercent}%)
+        </span>
 
-        responsive: true,
+      </div>
 
-        maintainAspectRatio: false,
+      <div class="progress-bar">
 
-        plugins: {
+        <div
+          class="progress-fill"
+          style="width:${hushallPercent}%;">
+        </div>
 
-          legend: {
+      </div>
 
-            display: false
+    </div>
 
-          }
-
-        }
-
-      }
-
-    });
+  `;
 
 }
 
