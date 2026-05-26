@@ -542,7 +542,7 @@ function renderProductChart(data) {
 
   console.log(
     "productChart:",
-    window.productChart
+    window.salesChart
   );
   
   let totalToalett = 0;
@@ -564,13 +564,13 @@ function renderProductChart(data) {
 
   }
 
-  if (window.productChart) {
+  if (window.salesChart) {
 
-    window.productChart.destroy();
+    window.salesChart.destroy();
 
   }
 
-  window.productChart =
+  window.salesChart =
     new Chart(canvas, {
 
       type: "bar",
