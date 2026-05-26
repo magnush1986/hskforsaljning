@@ -347,16 +347,30 @@ header p {
 
   background: #fff;
 
-  border-radius: 12px;
+  border-radius: 16px;
 
-  padding: 20px;
+  padding: 24px;
 
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+
+}
+
+.distribution-row {
+
+  margin-top: 20px;
 
 }
 
-#productChart {
+.distribution-header {
 
-  height: 250px !important;
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-bottom: 8px;
+
+  font-weight: 600;
 
 }
+
+
