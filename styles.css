@@ -342,3 +342,21 @@ header p {
   }
 
 }
+
+.chart-card {
+
+  background: #fff;
+
+  border-radius: 12px;
+
+  padding: 20px;
+
+  margin-bottom: 20px;
+
+}
+
+#productChart {
+
+  height: 250px !important;
+
+}
