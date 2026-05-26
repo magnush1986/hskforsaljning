@@ -540,6 +540,11 @@ function renderDetails(data) {
 
 function renderProductChart(data) {
 
+  console.log(
+    "productChart:",
+    window.productChart
+  );
+  
   let totalToalett = 0;
   let totalHushall = 0;
 
