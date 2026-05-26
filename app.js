@@ -67,6 +67,8 @@ async function init() {
 
   renderDetails(filteredData);
 
+  renderProductChart(filteredData);
+
 }
 
 function populateFilter(data) {
@@ -106,6 +108,8 @@ function populateFilter(data) {
           );
 
     renderDetails(filtered);
+
+    renderProductChart(filtered);
 
   });
 
@@ -531,6 +535,80 @@ function renderDetails(data) {
         `;
 
       }).join("");
+
+}
+
+function renderProductChart(data) {
+
+  let totalToalett = 0;
+  let totalHushall = 0;
+
+  data.forEach(r => {
+
+    totalToalett += r.toalett;
+    totalHushall += r.hushall;
+
+  });
+
+  const canvas =
+    document.getElementById("productChart");
+
+  if (!canvas) {
+
+    return;
+
+  }
+
+  if (window.productChart) {
+
+    window.productChart.destroy();
+
+  }
+
+  window.productChart =
+    new Chart(canvas, {
+
+      type: "bar",
+
+      data: {
+
+        labels: [
+          "Toalettpapper",
+          "Hushållspapper"
+        ],
+
+        datasets: [{
+
+          label: "Antal balar",
+
+          data: [
+            totalToalett,
+            totalHushall
+          ]
+
+        }]
+
+      },
+
+      options: {
+
+        responsive: true,
+
+        maintainAspectRatio: false,
+
+        plugins: {
+
+          legend: {
+
+            display: false
+
+          }
+
+        }
+
+      }
+
+    });
 
 }
 
