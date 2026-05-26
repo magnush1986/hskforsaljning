@@ -16,6 +16,9 @@ const urlParams =
 const preselectedTeam =
   urlParams.get("team");
 
+const allView =
+  preselectedTeam === "Alla";
+
 const filterSection =
   document.querySelector(".filters");
 
@@ -56,11 +59,11 @@ async function init() {
   // ========================================
 
   const filteredData =
-    preselectedTeam
-      ? rawData.filter(
-          r => r.lag === preselectedTeam
-        )
-      : rawData;
+  preselectedTeam && !allView
+    ? rawData.filter(
+        r => r.lag === preselectedTeam
+      )
+    : rawData;
 
   renderDetails(filteredData);
 
