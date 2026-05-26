@@ -248,8 +248,8 @@ header p {
   height: 100%;
   background: linear-gradient(
     90deg,
-    #1f7a3a,
-    #2db35a
+    var(--primary),
+    #4b8de0
   );
   border-radius: 999px;
   transition: width 0.3s ease;
@@ -377,15 +377,8 @@ header p {
 }
 
 .club-logo {
-
-  width: 140px;
-
-  max-width: 40vw;
-
-  display: block;
-
-  margin: 0 auto 20px auto;
-
+  width: 180px;
+  max-width: 50vw;
 }
 
 
