@@ -383,8 +383,15 @@ header p {
 }
 
 .club-logo {
-  width: 180px;
-  max-width: 50vw;
+
+  width: 120px;
+
+  max-width: 40vw;
+
+  display: block;
+
+  margin: 0 auto 20px auto;
+
 }
 
 
