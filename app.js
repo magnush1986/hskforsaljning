@@ -351,7 +351,7 @@ function renderDetails(data) {
             </div>
 
             <div class="value">
-              ${obj.total}
+              ${obj.total} balar
             </div>
 
           </div>
@@ -385,7 +385,7 @@ function renderDetails(data) {
             </div>
 
             <div class="value">
-              ${obj.total}
+              ${obj.total} balar
             </div>
 
           </div>
