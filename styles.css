@@ -247,7 +247,7 @@ header p {
   height: 12px;
   background: #e5e7eb;
   border-radius: 999px;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .progress-fill {
