@@ -370,11 +370,35 @@ function renderDetails(data) {
 
     const sortedTeams =
       Object.entries(teams)
-        .sort((a,b) => b[1].total - a[1].total);
+        .sort((a,b) => {
+    
+          const goalA =
+            teamConfig.find(
+              t => t.lag === a[0]
+            )?.mal || 0;
+    
+          const goalB =
+            teamConfig.find(
+              t => t.lag === b[0]
+            )?.mal || 0;
+    
+          const percentA =
+            goalA > 0
+              ? a[1].total / goalA
+              : 0;
+    
+          const percentB =
+            goalB > 0
+              ? b[1].total / goalB
+              : 0;
+    
+          return percentB - percentA;
+    
+        });
 
     document.getElementById("toplist").innerHTML =
       sortedTeams
-        .slice(0,10)
+        .slice(0,5)
         .map(([team, obj], index) => `
 
           <div class="player-card">
@@ -410,7 +434,31 @@ function renderDetails(data) {
 
   teamContainer.innerHTML =
     Object.entries(teams)
-      .sort((a,b) => b[1].total - a[1].total)
+      .sort((a,b) => {
+  
+        const goalA =
+          teamConfig.find(
+            t => t.lag === a[0]
+          )?.mal || 0;
+  
+        const goalB =
+          teamConfig.find(
+            t => t.lag === b[0]
+          )?.mal || 0;
+  
+        const percentA =
+          goalA > 0
+            ? a[1].total / goalA
+            : 0;
+  
+        const percentB =
+          goalB > 0
+            ? b[1].total / goalB
+            : 0;
+  
+        return percentB - percentA;
+  
+      })
       .map(([team, obj]) => {
 
         const sortedPlayers =
