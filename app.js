@@ -485,6 +485,7 @@ function renderDetails(data) {
 
               <h3>
                 ${team}
+                ${percent >= 100 ? "🏆" : ""}
               </h3>
 
               <div class="team-progress">
@@ -504,10 +505,10 @@ function renderDetails(data) {
                 <div class="progress-bar">
 
                   <div
-                    
-                    style="width:${Math.min(percent,150)}%;">
+                    class="progress-fill"
+                    style="width:${Math.min(percent,100)}%;">
                   </div>
-
+                
                 </div>
 
               </div>
@@ -530,6 +531,7 @@ function renderDetails(data) {
 
                 <h3>
                   ${team}
+                  ${percent >= 100 ? "🏆" : ""}
                 </h3>
 
                 <span class="toggle-icon">
@@ -556,7 +558,7 @@ function renderDetails(data) {
 
                   <div
                     class="progress-fill"
-                    style="width:${Math.min(percent,150)}%;">
+                    style="width:${Math.min(percent,100)}%;">
                   </div>
 
                 </div>
