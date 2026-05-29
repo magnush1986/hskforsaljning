@@ -24,7 +24,7 @@ const filterSection =
 
 async function init() {
 
-  console.time("all");
+  //console.time("all");
 
   [
     rawData,
@@ -38,7 +38,7 @@ async function init() {
   
   ]);
   
-  console.timeEnd("all");
+  //console.timeEnd("all");
 
   populateFilter(rawData);
 
