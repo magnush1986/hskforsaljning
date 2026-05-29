@@ -24,26 +24,21 @@ const filterSection =
 
 async function init() {
 
-  console.time("sales");
+  console.time("all");
 
-  rawData =
-    await fetchSalesData();
-
-  console.timeEnd("sales");
-
-  console.time("club");
-
-  clubConfig =
-    await fetchClubConfig();
-
-  console.timeEnd("club");
-
-  console.time("teams");
-
-  teamConfig =
-    await fetchTeams();
-
-  console.timeEnd("teams");
+  [
+    rawData,
+    clubConfig,
+    teamConfig
+  ] = await Promise.all([
+  
+    fetchSalesData(),
+    fetchClubConfig(),
+    fetchTeams()
+  
+  ]);
+  
+  console.timeEnd("all");
 
   populateFilter(rawData);
 
