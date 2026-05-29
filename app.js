@@ -504,8 +504,8 @@ function renderDetails(data) {
                 <div class="progress-bar">
 
                   <div
-                    class="progress-fill"
-                    style="width:${Math.min(percent,100)}%;">
+                    
+                    style="width:${Math.min(percent,150)}%;">
                   </div>
 
                 </div>
@@ -556,7 +556,7 @@ function renderDetails(data) {
 
                   <div
                     class="progress-fill"
-                    style="width:${Math.min(percent,100)}%;">
+                    style="width:${Math.min(percent,150)}%;">
                   </div>
 
                 </div>
